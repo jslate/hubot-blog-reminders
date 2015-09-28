@@ -44,7 +44,7 @@ module.exports = (robot) ->
       robot.brain.data.blog_reminders[date_str] = undefined
     else
       # if it is after 1PM and we haven't been reminded today...
-      if moment().hour() > 9 && !robot.brain.data.blog_reminders[moment().format('YYYY-MM-DD')]?
+      if moment().hour() > 13 && !robot.brain.data.blog_reminders[moment().format('YYYY-MM-DD')]?
         robot.http("http://tech.patientslikeme.com/").get() (err, res, body) ->
           $ = cheerio.load(body)
           date_str = $('.article-metadata').first().find('li').first().text().split(':')[1].trim()
@@ -59,5 +59,5 @@ module.exports = (robot) ->
               response.send "It's been #{Math.floor(days_since_last_post.asDays())} days since " +
               "any of you #{_.shuffle(ADJECTIVES)[0]} #{_.shuffle(PLURAL_NOUNS)[0]} wrote for the blog! " +
               "Someone should soon, how about... #{random_user}? See https://github.com/patientslikeme/tech-blog"
-            , (Math.floor(Math.random()*30)+30)*6 # sometime in the next 1/2 - 1 hour
+            , (Math.floor(Math.random()*30)+30)*6000 # sometime in the next 1/2 - 1 hour
 
