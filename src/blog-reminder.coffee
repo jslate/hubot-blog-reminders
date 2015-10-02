@@ -1,3 +1,21 @@
+# Description:
+#   Remind people to write for the PLM Tech Blog
+#
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
+#
+# Commands:
+#   None
+#
+# Notes:
+#   None
+#
+# Author:
+#   Jonathan Slate (https://github.com/jslate)
+
 cheerio = require('cheerio')
 moment = require('moment')
 _ = require('underscore')
