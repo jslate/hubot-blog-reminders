@@ -1,6 +1,6 @@
 {
   "name": "hubot-blog-reminders",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Remind people to write for the PLM Tech Blog",
   "main": "index.coffee",
   "author": {
