@@ -53,11 +53,6 @@ module.exports = (robot) ->
   'blackguards', 'heels', 'lowlives', 'deadbeats', 'defeateds', 'duds', 'failures', 'has-beens', 'goldbricks',
   'good-for-nothings', 'goof-offs', 'idlers', 'loafers', 'quitters', 'slouches', 'avoiders']
 
-  robot.brain.data.blog_reminders ||= {}
-  robot.brain.data.blog_praises ||= {}
-  robot.brain.data.blog_reminders_users ||= {}
-  robot.brain.data.blog_reminders_users[moment().format('YYYY-MM-DD')] ||= []
-
   pick_random = (array) -> _.shuffle(array)[0]
 
   insult = -> "#{pick_random(ADJECTIVES)} #{pick_random(PLURAL_NOUNS)}"
@@ -84,6 +79,12 @@ module.exports = (robot) ->
       callback({date: date, days_since: days_since, author: author})
 
   robot.hear /^(.+)$/i, (response) ->
+
+    robot.brain.data.blog_reminders ||= {}
+    robot.brain.data.blog_praises ||= {}
+    robot.brain.data.blog_reminders_users ||= {}
+    robot.brain.data.blog_reminders_users[current_date_str()] ||= []
+
     if response.match[1] == 'blog reset'
       response.send "resetting reminder for #{current_date_str()}"
       robot.brain.data.blog_reminders[current_date_str()] = undefined
